@@ -3,11 +3,12 @@ package com.yulken.discord_clone.users.application.dtos.users;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class ListUserRequestDTO {
 
-    @Size(min = 36)
-    private String uuid;
+    private UUID uuid;
 
     @Size(min = 2)
     private String login;

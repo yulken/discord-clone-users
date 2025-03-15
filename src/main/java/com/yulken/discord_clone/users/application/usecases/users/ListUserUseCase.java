@@ -5,7 +5,6 @@ import com.yulken.discord_clone.users.application.ports.persistence.UserPersiste
 import com.yulken.discord_clone.users.domain.entities.Pagination;
 import com.yulken.discord_clone.users.domain.entities.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

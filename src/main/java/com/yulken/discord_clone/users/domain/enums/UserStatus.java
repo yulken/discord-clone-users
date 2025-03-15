@@ -1,8 +1,13 @@
 package com.yulken.discord_clone.users.domain.enums;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
+@RequiredArgsConstructor
 public enum UserStatus {
     ACTIVE("Active", "A"),
     DELETED("Deleted", "D"),
@@ -17,19 +22,6 @@ public enum UserStatus {
         for (UserStatus status : values()) {
             SHORT_NAME_TO_ENUM.put(status.shortName, status);
         }
-    }
-
-    UserStatus(String name, String shortName) {
-        this.name = name;
-        this.shortName = shortName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getShortName() {
-        return shortName;
     }
 
     public static UserStatus fromShortString(String shortStr) {

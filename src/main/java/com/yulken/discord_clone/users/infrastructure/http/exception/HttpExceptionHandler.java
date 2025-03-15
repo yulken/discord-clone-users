@@ -1,6 +1,8 @@
 package com.yulken.discord_clone.users.infrastructure.http.exception;
 
-import com.yulken.discord_clone.users.domain.exceptions.ApiException;
+import com.yulken.discord_clone.users.domain.exceptions.ApiBusinessException;
+import com.yulken.discord_clone.users.domain.exceptions.ConflictingDataException;
+import com.yulken.discord_clone.users.domain.exceptions.UnauthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +36,13 @@ public class HttpExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ApiBusinessException.class)
+    public ErrorResponse handle(ApiBusinessException ex) {
+        log(ex, 1);
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ErrorResponse handle(MissingServletRequestParameterException ex) {
         log(ex, 1);
@@ -40,10 +50,24 @@ public class HttpExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(ApiException.class)
-    public ErrorResponse handle(ApiException ex) {
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ErrorResponse handle(MethodArgumentTypeMismatchException ex) {
         log(ex, 1);
         return new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(UnauthorizedException.class)
+    public ErrorResponse handle(UnauthorizedException ex) {
+        log(ex, 1);
+        return new ErrorResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ConflictingDataException.class)
+    public ErrorResponse handle(ConflictingDataException ex) {
+        log(ex, 1);
+        return new ErrorResponse(HttpStatus.CONFLICT, ex.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -57,7 +81,7 @@ public class HttpExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ErrorResponse handle(Exception ex) {
         log(ex, 10);
-        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu um erro interno");
     }
 
 
