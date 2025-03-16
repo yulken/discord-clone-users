@@ -1,8 +1,9 @@
-package com.yulken.discord_clone.users.infrastructure.http.exception;
+package com.yulken.discord_clone.users.presentation.exception;
 
 import com.yulken.discord_clone.users.domain.exceptions.ApiBusinessException;
 import com.yulken.discord_clone.users.domain.exceptions.ConflictingDataException;
 import com.yulken.discord_clone.users.domain.exceptions.UnauthorizedException;
+import feign.RetryableException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
@@ -75,6 +76,12 @@ public class HttpExceptionHandler {
     public ErrorResponse handle(HttpRequestMethodNotSupportedException ex) {
         log(ex, 10);
         return new ErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(RetryableException.class)
+    public void handle(RetryableException ex) {
+        log.error("{}", ex.getMessage());
+        throw ex;
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

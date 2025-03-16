@@ -1,4 +1,4 @@
-package com.yulken.discord_clone.users.infrastructure.http.exception;
+package com.yulken.discord_clone.users.presentation.exception;
 
 import org.springframework.http.HttpStatus;
 

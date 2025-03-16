@@ -7,7 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.yulken.discord_clone.users.domain.entities.Token;
 import com.yulken.discord_clone.users.domain.entities.User;
 import com.yulken.discord_clone.users.domain.exceptions.UnauthorizedException;
-import com.yulken.discord_clone.users.infrastructure.http.config.TokenConfig;
+import com.yulken.discord_clone.users.presentation.config.TokenConfig;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package com.yulken.discord_clone.users.infrastructure.http.exception;
+package com.yulken.discord_clone.users.presentation.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

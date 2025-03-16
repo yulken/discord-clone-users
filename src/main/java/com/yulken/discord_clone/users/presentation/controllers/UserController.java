@@ -1,4 +1,4 @@
-package com.yulken.discord_clone.users.infrastructure.http.controllers;
+package com.yulken.discord_clone.users.presentation.controllers;
 
 import com.yulken.discord_clone.users.application.dtos.MessageResponseDTO;
 import com.yulken.discord_clone.users.application.dtos.users.CreateUserRequestDTO;

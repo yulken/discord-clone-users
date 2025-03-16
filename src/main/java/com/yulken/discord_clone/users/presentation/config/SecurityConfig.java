@@ -1,4 +1,4 @@
-package com.yulken.discord_clone.users.infrastructure.http.config;
+package com.yulken.discord_clone.users.presentation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
